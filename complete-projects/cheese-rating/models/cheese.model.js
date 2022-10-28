@@ -1,14 +1,16 @@
 module.exports = (sequelize, Sequelize) => {
   const Cheese = sequelize.define("cheese", {
-    title: {
+    id: {
+      type: Sequelize.INTEGER.UNSIGNED,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    name: {
       type: Sequelize.STRING
     },
     description: {
       type: Sequelize.STRING
     },
-    published: {
-      type: Sequelize.BOOLEAN
-    }
   })
 
   return Cheese
