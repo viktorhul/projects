@@ -15,11 +15,11 @@ app.use((req, res, next) => {
     if (!res.returnValue) {
         return next(new HttpError(404, 'Not found'))
     }
-
+    
     return res.status(200).json(res.returnValue)
 })
 
-app.use((error, req, res) => {
+app.use((error, req, res, next) => {
     if (error.statusCode && error.statusCode != 500) {
         return res.status(error.statusCode).json({ error: error.message })
     } else {

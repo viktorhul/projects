@@ -4,7 +4,7 @@ function initDB() {
     sequelize.authenticate()
         .then(() => {
             console.log('Connected to DB')
-            sequelize.sync({ force: process.env.NODE_ENV == 'dev' })
+            sequelize.sync() // { force: process.env.NODE_ENV == 'dev' }
         })
 
         .catch((err) => {
