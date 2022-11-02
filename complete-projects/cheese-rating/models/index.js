@@ -16,5 +16,6 @@ const db = {
 }
 
 db.cheese = require('./cheese.model')(sequelize, Sequelize)
+db.cheesePhoto = require('./cheesePhoto.model')(sequelize, Sequelize)
 
 module.exports = db

@@ -1,5 +1,6 @@
 const db = require('../models')
 const Cheese = db.cheese
+const CheesePhoto = db.cheesePhoto
 const Op = db.Sequelize.Op
 const HttpError = require('../utils/error')
 
@@ -24,7 +25,17 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
+  const title = req.query.title
+  const condition = title ? { title: { [Op.like]: `%${title}%` } } : null
 
+  Cheese.findall({ where: condition })
+    .then((data) => {
+
+      res.send(data)
+    })
+    .catch((err) => {
+      throw new HttpError(500, err.message)
+    })
 }
 
 exports.findOne = (req, res) => {
